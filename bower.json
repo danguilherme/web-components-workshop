@@ -1,0 +1,22 @@
+{
+  "name": "reveal-boilerplate",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Danguilherme/reveal-boilerplate",
+  "authors": [
+    "Guilherme Ventura <guilhermeventura2@gmail.com>"
+  ],
+  "description": "Base para apresentações em HTML.",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "https://github.com/hakimel/reveal.js.git#~3.0.0"
+  }
+}

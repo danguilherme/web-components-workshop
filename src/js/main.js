@@ -1,3 +1,7 @@
+document.addEventListener('readystatechange', function() {
+	if (document.readyState === 'complete') onReady();
+});
+
 Reveal.initialize({
 	controls: true,
 	progress: true,
@@ -13,3 +17,7 @@ Reveal.initialize({
 		{ src: 'js/vendor/notes/notes.js', async: true }
 	]
 });
+
+function onReady() {
+
+}
