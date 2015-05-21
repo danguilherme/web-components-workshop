@@ -1,8 +1,5 @@
-# Reveal.js Boilerplate
+# Workshop de Web Components
 
-This is a boilerplate to use [Reveal.JS](http://lab.hakim.se/reveal-js/) easily with [Gulp](http://gulpjs.com/), [Jade](http://jade-lang.com/) and [Stylus](http://learnboost.github.io/stylus/).
+Workshop de Web Components para a 5ª Feira de Tecnologia da Metrocamp - Grupo ibmec.
 
-To know more about Reveal.js and how to use, [read the docs here](https://github.com/hakimel/reveal.js).
-
-
-
+Apresentação baseada no [Reveal.js Boilerplate](https://github.com/danguilherme/reveal-boilerplate).
