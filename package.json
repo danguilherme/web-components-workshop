@@ -1,19 +1,19 @@
 {
-  "name": "reveal-boilerplate",
+  "name": "web-components-workshop",
   "version": "1.0.0",
-  "description": "A boilerplate to create presentations using Reveal.JS, Gulp and more",
+  "description": "Workshop de Web Components para a 5ª Feira de Tecnologia da Metrocamp - Grupo ibmec.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "reveal",
-    "gulp",
-    "stylus",
-    "highlight"
+    "web-components",
+    "workshop",
+    "talk",
+    "presentation"
   ],
-  "author": "Willian Justen de Vasconcellos",
-  "license": "ISC",
+  "author": "Guilherme Ventura",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.4.0",
     "gulp": "^3.8.11",
