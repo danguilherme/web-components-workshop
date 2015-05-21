@@ -1,11 +1,11 @@
 {
-  "name": "reveal-boilerplate",
+  "name": "web-components-workshop",
   "version": "0.0.1",
-  "homepage": "https://github.com/Danguilherme/reveal-boilerplate",
+  "homepage": "https://github.com/danguilherme/web-components-workshop",
   "authors": [
     "Guilherme Ventura <guilhermeventura2@gmail.com>"
   ],
-  "description": "Base para apresentações em HTML.",
+  "description": "Workshop de Web Components para a 5ª Feira de Tecnologia da Metrocamp - Grupo ibmec.",
   "main": "index.html",
   "license": "MIT",
   "private": true,
