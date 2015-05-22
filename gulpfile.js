@@ -65,7 +65,7 @@ gulp.task('browser-sync', function () {
 
    browserSync.init(files, {
 	  server: {
-		 baseDir: './build/'
+		 baseDir: ['./build/', './bower_components/']
 	  }
    });
 });

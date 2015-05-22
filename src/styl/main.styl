@@ -2,7 +2,65 @@
 @import "vendor/white"
 @import "vendor/zenburn"
 
+#background-legend
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  
+  opacity 0
+  transition opacity .7s linear
+  
+  padding .3em
+  
+  z-index 2
+  text-align center
+  
+  color white
+  background-color rgba(0,0,0,.7)
+  p
+    margin 0
+    text-shadow 1px 1px 1px black
+    a
+      color inherit
+  
+.background-with-legend #background-legend
+  opacity 1
+
+.reveal.overview .background-legend
+    display inherit
+
 section
+  .background-legend
+    display none
+  &#presentation
+    > section
+      text-align left
+    
+    #author-links
+      font-family Consolas, monospace
+      list-style none
+      margin 2em 0
+      text-align left
+      
+      a
+        color inherit
+      ::before
+        font-family FontAwesome
+        display inline-block
+        margin-right .3em
+        vertical-align middle
+      #twitter::before
+        content '\f099'
+      #github::before
+        content '\f09b'
+      #website::before
+        content '\f0ac'
+      
+    img.profile-picture
+      border-radius 50%
+      float right
+
   h1
     code
       text-transform none

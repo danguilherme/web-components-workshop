@@ -1,7 +1,3 @@
-document.addEventListener('readystatechange', function() {
-	if (document.readyState === 'complete') onReady();
-});
-
 Reveal.initialize({
 	controls: true,
 	progress: true,
@@ -18,6 +14,20 @@ Reveal.initialize({
 	]
 });
 
-function onReady() {
+Reveal.addEventListener('ready', onReady);
 
+function onReady() {
+  updateBackgroundLegend();
+  
+	Reveal.addEventListener( 'slidechanged', updateBackgroundLegend);
+}
+
+function updateBackgroundLegend() {
+  var slide = Reveal.getCurrentSlide();
+  
+  if (slide.getAttribute('data-state') === 'background-with-legend') {
+    var target = document.querySelector('#background-legend .legend-text');
+    var content = slide.querySelector('p.background-legend').innerHTML;
+    target.innerHTML = content;
+  };
 }
