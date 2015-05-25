@@ -8,7 +8,7 @@ section
       p A cada dia que passa novas tecnologias surgem, temos aplicações mais complexas e consequentemente os usuários ficam mais exigentes.
 
   section
-    h1 Pilares
+    h1 Baseado em 4 Pilares
     ul
       li.fragment: a(href="http://w3c.github.io/webcomponents/spec/custom/", target="_BLANK") Custom Elements
       li.fragment: a(href="http://w3c.github.io/webcomponents/spec/shadow/", target="_BLANK") Shadow DOM
@@ -17,3 +17,11 @@ section
 
     aside.notes
       p Os web components estão baseados em 5 pilares da especificação do HTML 5
+  section
+    h1 Testando
+    p.chrome-only Habilite a flag de funcionalidades experimentais: #[a(href="chrome://flags/#enable-experimental-web-platform-features" target="_BLANK") #enable-experimental-web-platform-features].
+    div.firefox-only
+      ol
+        li Abra a página #[a(href="about:config" target="_BLANK") about:config]
+        li Confirme o aviso de atenção
+        li Procure pela preferência #[code dom.webcomponents.enabled] e altere seu valor para #[code true]

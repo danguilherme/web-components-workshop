@@ -2,6 +2,15 @@
 @import "vendor/white"
 @import "vendor/zenburn"
 
+.chrome-only,
+.firefox-only
+  display none
+  
+.chrome .chrome-only,
+.firefox .firefox-only
+  display inherit
+  
+
 #background-legend
   position absolute
   bottom 0

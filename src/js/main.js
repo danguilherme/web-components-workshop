@@ -17,6 +17,7 @@ Reveal.initialize({
 Reveal.addEventListener('ready', onReady);
 
 function onReady() {
+  setBrowserFlags();
   updateBackgroundLegend();
   
 	Reveal.addEventListener( 'slidechanged', updateBackgroundLegend);
@@ -30,4 +31,8 @@ function updateBackgroundLegend() {
     var content = slide.querySelector('p.background-legend').innerHTML;
     target.innerHTML = content;
   };
+}
+
+function setBrowserFlags() {
+  document.getElementsByTagName('html')[0].classList.add(bowser.name.toLowerCase());
 }

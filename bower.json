@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "reveal.js": "https://github.com/hakimel/reveal.js.git#~3.0.0",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "bowser": "~0.7.3"
   }
 }
