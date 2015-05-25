@@ -1,3 +1,68 @@
 section
   section
     h1 Custom Elements
+
+    aside.notes
+      p Os custom elements permitem que nós, desenvolvedores, criemos elementos únicos, que não existem na especificação do HTML.
+      p #[strong fragment]
+
+  section(data-transition="fade")
+    figure
+      img(src="img/gmail-div-soup.png", alt="Sopa de <div> no Gmail")
+      figcaption Sopa de #[code &lt;div&gt;]s no Gmail.
+
+    aside.notes
+      p Diga adeus à sopa de #[code div]s!
+
+  section
+    h1 Pra Quê???
+
+    pre.fragment: code.
+      &lt;batata&gt;&lt;/batata&gt;
+
+    pre.fragment: code.
+      batata {
+        background-color: #FF0;
+        color: #DC8200;
+        font-weight: bold;
+      }
+
+    pre.fragment: code.
+      var primeiraBatata = document.getElementsByTagName('batata')[0];
+      primeiraBatata.innerText = "frita";
+
+    style.
+      batata {
+        background-color: #FF0;
+        color: #DC8200;
+        font-weight: bold;
+      }
+    batata.fragment frita
+
+    aside.notes
+      p.
+       Aí eu te perrrgunto: pra quê? Já podemos ter expressividade! Se eu colocar um elemento "batata" #[strong fragment] o
+       browser não vai reclamar, eu vou consigo estilizar ele #[strong fragment] via CSS e acessá-lo via JavaScript, e vai
+       funcionar perfeitamente!!1! #[strong fragment]
+
+  section
+    h1 Mais Que Sintaxe
+    
+    pre: code.
+      primeiraBatata.constructor; //-&gt; function HTMLUnknownElement()
+
+    aside.notes
+      p Batata não é um elemento conhecido pelo browser
+
+  section
+    h1 API Nativa
+    
+    pre: code.
+      primeiraBatata.fritar();
+
+    aside.notes
+      p Batata não é um elemento conhecido pelo browser
+
+  section
+    pre: code.
+      var element = document.registerElement('x-modal');

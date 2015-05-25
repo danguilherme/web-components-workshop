@@ -8,6 +8,24 @@ section
       p A cada dia que passa novas tecnologias surgem, temos aplicações mais complexas e consequentemente os usuários ficam mais exigentes.
 
   section
+    h1 Em Desenvolvimento
+    //- div.chrome-only
+    //- div.firefox-only
+    ul.fragment
+      li
+        strong Chrome
+        div Habilite a flag de funcionalidades experimentais: #[a(href="chrome://flags/#enable-experimental-web-platform-features" target="_BLANK") #enable-experimental-web-platform-features].
+      li
+        strong Firefox
+        ol
+          li Abra a página #[a(href="about:config" target="_BLANK") about:config]
+          li Confirme o aviso de atenção
+          li Procure pela preferência #[code dom.webcomponents.enabled] e altere seu valor para #[code true]
+    
+    aside.notes
+      p As especificações das tecnologias que compõem os Web Components ainda estão em discussão/desenvolvimento, por isso os browsers ainda não estão sendo distribuídos com elas ativadas.
+
+  section
     h1 Baseado em 4 Pilares
     ul
       li.fragment: a(href="http://w3c.github.io/webcomponents/spec/custom/", target="_BLANK") Custom Elements
@@ -16,12 +34,9 @@ section
       li.fragment: a(href="http://w3c.github.io/webcomponents/spec/imports/", target="_BLANK") HTML Imports
 
     aside.notes
-      p Os web components estão baseados em 5 pilares da especificação do HTML 5
-  section
-    h1 Testando
-    p.chrome-only Habilite a flag de funcionalidades experimentais: #[a(href="chrome://flags/#enable-experimental-web-platform-features" target="_BLANK") #enable-experimental-web-platform-features].
-    div.firefox-only
-      ol
-        li Abra a página #[a(href="about:config" target="_BLANK") about:config]
-        li Confirme o aviso de atenção
-        li Procure pela preferência #[code dom.webcomponents.enabled] e altere seu valor para #[code true]
+      p Web Components é um termo que abrange 4 tecnologias distintas que, se utilizadas em conjunto, disponibilizam um grande poder de reutilização de código. Elas são:
+      ul
+        li Custom Elements
+        li Shadow DOM
+        li Templates
+        li HTML Imports
