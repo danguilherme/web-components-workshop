@@ -1,10 +1,13 @@
-section
+section#custom-elements
   section
     h1 Custom Elements
 
     aside.notes
-      p Os custom elements permitem que nós, desenvolvedores, criemos elementos únicos, que não existem na especificação do HTML.
-      p #[strong fragment]
+      p.
+        Com as aplicações complexas que temos hoje, as tags convencionais não suprem mais todas as nossas necessidades.
+        Quando o HTML foi criado não existiam tabs, accordions ou modais. O que nos resta é encher nossas páginas
+        com divs e mais divs, deixando nosso HTML cada vez mais difícil de entender, sem semântica e #[strong feio].
+      p Os Custom Elements permitem que nós, desenvolvedores, criemos elementos únicos, que não existem na especificação do HTML.
 
   section(data-transition="fade")
     figure
@@ -12,7 +15,25 @@ section
       figcaption Sopa de #[code &lt;div&gt;]s no Gmail.
 
     aside.notes
-      p Diga adeus à sopa de #[code div]s!
+      p.
+        No desenvolvimento de apps modernos, com muita interação com o usuário (e cheios de "firulas"), somos obrigados a apelar para
+        a sopa de divs.
+
+  section
+    h1 Criando
+    pre: code.
+      var XModalElement = document.registerElement('x-modal');
+
+    aside.notes
+      p.
+        Registrar elementos customizados é tão fácil quanto chamar um método no JavaScript.
+        A função #[code document.registerElement] é utilizada quando queremos registrar um elemento novo.
+        O primeiro argumento dessa função é o nome do elemento, o segundo é um objeto, opcional, contendo
+        as informações de herança (já vamos chegar lá).
+      p.
+        A única regra é que o nome #[strong deve contar um traço (#[code -])]. Isso acontece para que o browser
+        seja capaz de identificar o que é um elemento descrito na especificação do HTML ou elemento customizado
+        (custom element). Isso também protege elementos que possam ser adicionados na especificação no futuro.
 
   section
     h1 Pra Quê???
@@ -28,8 +49,8 @@ section
       }
 
     pre.fragment: code.
-      var primeiraBatata = document.getElementsByTagName('batata')[0];
-      primeiraBatata.innerText = "frita";
+      var minhaBatata = document.getElementsByTagName('batata')[0];
+      minhaBatata.innerText = "frita";
 
     style.
       batata {
@@ -42,27 +63,67 @@ section
     aside.notes
       p.
        Aí eu te perrrgunto: pra quê? Já podemos ter expressividade! Se eu colocar um elemento "batata" #[strong fragment] o
-       browser não vai reclamar, eu vou consigo estilizar ele #[strong fragment] via CSS e acessá-lo via JavaScript, e vai
+       browser não vai reclamar, eu consigo estilizar ele #[strong fragment] via CSS e acessá-lo
+       #[strong fragment] via JavaScript, e vai
        funcionar perfeitamente!!1! #[strong fragment]
 
   section
     h1 Mais Que Sintaxe
-    
-    pre: code.
-      primeiraBatata.constructor; //-&gt; function HTMLUnknownElement()
 
     aside.notes
-      p Batata não é um elemento conhecido pelo browser
-
-  section
-    h1 API Nativa
+      p.
+        Custom elements são mais que isso. Além de agregar valor semântico aos nossos documentos, podemos definir... #[strong slide]
     
+  section
+    h1 API própria
     pre: code.
-      primeiraBatata.fritar();
+      minhaBatata.fritar();
+      minhaBatata.assar();
+      minhaBatata.dourar();
 
     aside.notes
-      p Batata não é um elemento conhecido pelo browser
+      p ...uma API completamente nova, adicionando funcionalidades únicas a eles.
 
   section
+    h1 Herança
+
     pre: code.
-      var element = document.registerElement('x-modal');
+      var SearchableSelectPrototype = Object.create(HTMLSelectElement.prototype);
+      
+      SearchableSelectPrototype.filter = function(searchTerm) {
+        // esconde os &lt;option&gt;s que não contém o termo
+      }
+
+      var SearchableSelectElement = document.registerElement('searchable-select', {
+        prototype: SearchableSelectPrototype
+      });
+
+    aside.notes
+      p Além da API própria, podemos estender um elemento já existente, reutilizando suas funcionalidades e adicionando o que precisarmos.
+      p.
+        Aqui, estendemos o elemento &lt;select&gt; e adicionamos o método filter, que iria esconder
+        as opções que não batem com a string passada.
+      p.
+        Reparem que passamos um objeto como segundo parâmetro da função #[document.registerElement], passando nosso prototype
+        #[strong estendido] a partir de um &lt;select&gt;.
+
+  section.lifecycle
+    h1 Ciclo de Vida
+
+    ul
+      li
+        p: #[code createdCallback]: Uma nova instância do elemento foi criada
+      li
+        p: #[code attachedCallback]: Uma instância foi adicionada ao documento
+      li
+        p: #[code detachedCallback]: Uma instância foi removida do documento
+      li
+        p: #[code attributteChangedCallback]: Um atributo foi adicionado, editado ou removido.
+
+    aside.notes
+      p Temos acesso também a funções chamadas durante fases específicas do elemento. Elas são:
+      ul
+        li: code createdCallback
+        li: code attachedCallback
+        li: code detachedCallback
+        li: code attributteChangedCallback

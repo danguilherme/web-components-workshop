@@ -5,28 +5,15 @@ section
 
     aside.notes
       p A web está ultrapassada.
-      p A cada dia que passa novas tecnologias surgem, temos aplicações mais complexas e consequentemente os usuários ficam mais exigentes.
+      p A cada dia que passa novas tecnologias surgem, temos aplicações mais complexas e difíceis de manter.
+      p.
+        Quem nunca baixou um plugin jQuery e teve que estilizá-lo usando namespaces ou o próprio nome do plugin nas classes CSS?
+        E quando você edita o estilo da sua aplicação e quebra aquele &lt;select&gt; bonitão que você nunca testa? Se você nunca
+        passou por isso, saiba que mais cedo ou mais tarde vai acontecer.
+      p A web viu esse problema e agora apresenta um conjunto de tecnologias denominado Web Components.
 
   section
-    h1 Em Desenvolvimento
-    //- div.chrome-only
-    //- div.firefox-only
-    ul.fragment
-      li
-        strong Chrome
-        div Habilite a flag de funcionalidades experimentais: #[a(href="chrome://flags/#enable-experimental-web-platform-features" target="_BLANK") #enable-experimental-web-platform-features].
-      li
-        strong Firefox
-        ol
-          li Abra a página #[a(href="about:config" target="_BLANK") about:config]
-          li Confirme o aviso de atenção
-          li Procure pela preferência #[code dom.webcomponents.enabled] e altere seu valor para #[code true]
-    
-    aside.notes
-      p As especificações das tecnologias que compõem os Web Components ainda estão em discussão/desenvolvimento, por isso os browsers ainda não estão sendo distribuídos com elas ativadas.
-
-  section
-    h1 Baseado em 4 Pilares
+    h1 Pilares
     ul
       li.fragment: a(href="http://w3c.github.io/webcomponents/spec/custom/", target="_BLANK") Custom Elements
       li.fragment: a(href="http://w3c.github.io/webcomponents/spec/shadow/", target="_BLANK") Shadow DOM
@@ -34,9 +21,32 @@ section
       li.fragment: a(href="http://w3c.github.io/webcomponents/spec/imports/", target="_BLANK") HTML Imports
 
     aside.notes
-      p Web Components é um termo que abrange 4 tecnologias distintas que, se utilizadas em conjunto, disponibilizam um grande poder de reutilização de código. Elas são:
+      p.
+        Web Components é um termo que abrange 4 tecnologias distintas que, se utilizadas em conjunto,
+        nos disponibilizam um grande poder de reusabilidade, alta manutenibilidade e encapsulamento de
+        estilo, marcação e comportamento.
+      p Essas tecnologias são:
       ul
-        li Custom Elements
-        li Shadow DOM
-        li Templates
-        li HTML Imports
+        li #[strong fragment] Custom Elements
+        li #[strong fragment] Shadow DOM
+        li #[strong fragment] Templates
+        li #[strong fragment] HTML Imports
+      p Vamos falar sobre cada uma delas mais adiante
+
+  section
+    h1 Em Desenvolvimento
+    ul.fragment
+      li
+        strong Chrome
+        div Habilite a flag de funcionalidades experimentais: #[code #enable-experimental-web-platform-features].
+      li
+        strong Firefox
+        ol
+          li Abra a página #[code about:config]
+          li Confirme o aviso de atenção
+          li Procure pela preferência #[code dom.webcomponents.enabled] e altere seu valor para #[code true]
+    
+    aside.notes
+      p.
+        As especificações das tecnologias que compõem os Web Components ainda estão em discussão/desenvolvimento,
+        por isso os browsers ainda não estão sendo distribuídos com elas ativas por padrão.
