@@ -1,4 +1,4 @@
-section
+section#web-components-intro
   section
     h1 Web Components
       small O futuro da Web
@@ -11,6 +11,28 @@ section
         E quando você edita o estilo da sua aplicação e quebra aquele &lt;select&gt; bonitão que você nunca testa? Se você nunca
         passou por isso, saiba que mais cedo ou mais tarde vai acontecer.
       p A web viu esse problema e agora apresenta um conjunto de tecnologias denominado Web Components.
+
+  section
+    h1 O Que Ganhamos com Isso
+
+    ul
+      li.fragment Encapsulamento #[strong.fragment de verdade]
+      li.fragment Reutilização e organização de código #[strong.fragment sem efeitos colaterais]
+      li.fragment Baixo acoplamento #[strong nativo]
+
+    aside.notes
+      p.
+        Essa tecnologia nos traz um maior #[strong fragment] encapsulamento do nosso código. Você pode pensar que aquele
+        plugin de &lt;select&gt; era bem organizado, bem encapsulado, já que ele tinha um arquivo CSS que só alterava o estilo
+        dele mesmo, um "arquivinho" #[abbr(title="JavaScript") JS] com a implementação do plugin, mas não.
+        Como eu disse, qualquer mudança de estilo na sua aplicação será refletida em todo e qualquer elemento na página, e isso
+        não é encapsulamento #[strong fragment] de verdade.
+      p.
+        Ela também traz inovações na #[strong fragment] reutilização e organização do nosso código, em módulos menores e focados,
+        #[strong fragment] sem efeitos colaterais.
+      p.
+        E também é possível atingir o que muitos frameworks tentam evangelizar há muito tempo, o #[strong fragment] baixo acoplamento
+        entre os módulos de um sistema (eles não dependem um do outro).
 
   section
     h1 Pilares
@@ -33,18 +55,21 @@ section
         li #[strong fragment] HTML Imports
       p Vamos falar sobre cada uma delas mais adiante
 
-  section
+  section#em-desenvolvimento
     h1 Em Desenvolvimento
-    ul.fragment
-      li
-        strong Chrome
-        div Habilite a flag de funcionalidades experimentais: #[code #enable-experimental-web-platform-features].
-      li
-        strong Firefox
-        ol
-          li Abra a página #[code about:config]
-          li Confirme o aviso de atenção
-          li Procure pela preferência #[code dom.webcomponents.enabled] e altere seu valor para #[code true]
+    section
+      ul.fragment
+        li.chrome
+          strong Chrome
+          ol
+            li Abra a página #[code chrome:&#47;&#47;flags]
+            li Habilite a flag de funcionalidades experimentais: #[code #enable-experimental-web-platform-features].
+        li.firefox
+          strong Firefox
+          ol
+            li Abra a página #[code about:config]
+            li Confirme o aviso de atenção
+            li Procure pela preferência #[code dom.webcomponents.enabled] e altere seu valor para #[code true]
     
     aside.notes
       p.

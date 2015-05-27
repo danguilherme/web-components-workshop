@@ -1,0 +1,79 @@
+section#templates
+  section
+    h1 Templates
+    aside.notes
+      p A ideia dos templates é bem simples e já vem sendo usada há um bom tempo na web.
+      p.
+        Essa ideia consiste em pedações de código de marcação (HTML) que podem ser utilizados
+        várias vezes, geralmente com diferentes valores.
+  section
+    h1 As Problemas de Hoje
+    aside.notes
+      p.
+        Como eu disse, essa ideia dos templates já vem sendo usada há um bom tempo na web. Bibliotecas
+        como #[a(href="https://github.com/janl/mustache.js" target="_BLANK") mustache]
+        e #[a(href="http://handlebarsjs.com/" target="_BLANK") handlebars] já fazem coisas como essa.
+      p Dependendo de como esses templates são criados, existem alguns pontos negativos.
+
+  section
+    h2 1 - Marcações Escondidas
+    pre: code.
+      &lt;div id="template" hidden&gt;
+        &lt;img src="404.png" /&gt;
+        &lt;p&gt;&lt;/p&gt;
+      &lt;/div&gt;
+
+    aside.notes
+      p.
+        Ok, não é renderizado nada do template e usa DOM, copiá-lo é fácil. O problema aqui é que o contéudo
+        vai ser "parseado" normalmente, o que significa que a imagem será requisitada pelo menos uma vez, mesmo
+        que esse template não seja utilizado.
+
+
+  section
+    h2 2 - Marcações Na Tag Script
+    pre: code.
+      &lt;script id="template" type="text/x-handlebars-template"&gt;
+        &lt;img src="404.png" /&gt;
+        &lt;p&gt;&lt;/p&gt;
+      &lt;/script&gt;
+
+    aside.notes
+      p.
+        Ok, não é renderizado nem parseado por default. O problema aqui é uma questão de segurança.
+        Isso nos força a parsear o conteúdo na mão (ou com #[code innerHTML]), e fazer isso com dados supridos pelo
+        usuário não é muito seguro (alguém disse SQL Injection?).
+
+  section#elemento-template
+    h1: code &lt;template&gt;
+
+    pre.fragment: code.
+      &lt;template id="template"&gt;
+        &lt;img src="404.png" /&gt;
+        &lt;p&gt;&lt;/p&gt;
+      &lt;/template&gt;
+
+    aside.notes
+      p.
+        O elemento template veio para resolver isso. Ele aceita qualquer tag HTML, desde #[code &lt;head&gt;] até
+        #[code &lt;strong&gt;], e tudo que está dentro dele fica #[strong inerte até ser utilizado].
+      p #[strong fragment]
+      p.
+        Agora sim, temos um pedaço de HTML que será parseado (será DOM), mas estará completamente inerte até ser
+        ativado. Imagens não são requisitadas, vídeos não tocam, scripts não rodam. Mas que beleza!
+
+  section
+    h1 Ativando
+
+    pre.fragment: code.
+      var template = document.getElementById("template");
+      var content = template.content;
+
+      var target = document.getElementById("target");
+      target.appendChild(document.importNode(content, true));
+    aside.notes
+      p Como "ativar" um template?
+      p #[strong fragment]
+      p.
+        Primeiro pegamos ele, depois sua propriedade #[code content] e então duplicamos esse
+        conteúdo para onde quisermos.

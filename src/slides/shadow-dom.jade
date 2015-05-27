@@ -1,3 +1,195 @@
-section
+section#shadow-dom
   section
     h1 Shadow DOM
+
+    aside.notes
+      p Shadow DOM é responsável pelo encapsulamento de estilos e marcação.
+      p.
+        Com ele, podemos esconder marcação que não diz respeito ao usuário e, o mais importante,
+        #[strong encapsular] os estilos da página.
+
+  section
+    h1 Encapsulamento
+
+    aside.notes
+      p.
+        O que significa "encapsular os estilos da página"? Simples, o que está dentro não sai,
+        o que está fora não entra.
+      p.
+        Explicando melhor, nenhuma regra de estilo declarada dentro de uma #[em shadow root]
+        "vaza" para fora dela. O mesmo acontece na outra via: nenhuma regra CSS declarada fora
+        da #[em shadow root] "penetra" nela (a não ser que você deixe isso explícito).
+      p.
+        O mesmo acontece para marcação: o documento principal não consegue exergar elementos
+        dentro de uma #[em shadow root] a não ser que isso seja feito explicitamente.
+      p Veremos mais sobre isso na prática.
+
+  section
+    h1 #[em Shadow Root]
+
+    ul
+      li Quando adicionado a um elemento, #[strong todo o seu conteúdo se torna invisível]
+      li Totalmente separado do documento principal
+        ul
+          li Nenhum estilo entra ou sai
+          li Não existe colisão de #[code id] com elementos do documento
+      li Quem o detém é chamado de Shadow Host
+      ul: li O host pode ser estilizado de dentro do #[em shadow root] pelo seletor #[code :host]
+
+    aside.notes
+      p.
+        #[em shadow root] nada mais é do que a raiz de uma shadow tree. Quando um #[em shadow root] é
+        adicionado a algum elemento, #[strong todo o seu conteúdo some], ficando visível
+        apenas o que está dentro dele.
+
+  section
+    h1 Criando um #[em shadow root]
+
+    pre: code.
+      &lt;div id="target"&gt;&lt;/div&gt;
+
+    pre: code.
+      var target = document.getElementById("target");
+      var shadowRoot = target.createShadowRoot();
+
+    pre.fragment: code.
+      var span = document.createElement("span");
+      span.id = "ninja";
+      span.textContent = "Sou um ninja!";
+
+      shadowRoot.appendChild(span);
+
+    figure.fragment
+      img(src="img/shadow-tree.png", alt="Shadow tree criada pelo código acima")
+
+    pre.fragment: code.
+      document.getElementById("ninja");
+      //-&gt; null
+
+    aside.notes
+      p Podemos criar uma #[em shadow root] em qualquer elemento, chamando a função #[code createShadowRoot].
+      p #[strong fragment]
+      p Podemos adicionar quantos elementos quisermos nesse objeto, como em qualquer outro nó.
+      p #[strong fragment]
+      p.
+        Mas não podemos acessá-lo de fora da raiz.
+        Esse cara é tão ninja que o documento não o enxerga!
+        Mas isso não será por muito tempo.
+
+  section
+    h1 #[code ::shadow], #[code /deep/]
+
+    ul
+      li O pseudo-elemento #[code ::shadow] seleciona as #[em shadow roots] de um elemento.
+      li O combinador #[code /deep/] simplesmente ignora as blindagens que as #[em shadow trees] oferecem.
+
+    h2.fragment E o Tal do "Encapsulamento?"
+    p.fragment.
+      O objetivo do Shadow DOM é evitar mudanças #[strong acidentais]
+      nos componentes, não remover o controle da mão dos desenvolvedores.
+
+    aside.notes
+      p Utilizamos o pseudo-elemento #[code ::shadow] para selecionar as #[em shadow roots] de um elemento em específico.
+      p O combinador #[code /deep/] é mais poderoso, já que ele ignora todas as blindagens que as #[em shadow trees] oferecem.
+      p #[strong fragment]
+      p.
+        Esses seletores existem porque a ideia do Shadow DOM é evitar mudanças
+        #[strong acidentais]/não desejadas nos componentes, não remover o controle da mão dos desenvolvedores.
+
+  section
+    h1 Voltando...
+
+    pre: code.
+      document.querySelector("#target::shadow #ninja")
+      //-&gt; &lt;span id="ninja"&gt;Sou um ninja!&lt;/span&gt;
+
+      document.querySelector("html /deep/ #ninja")
+      //-&gt; &lt;span id="ninja"&gt;Sou um ninja!&lt;/span&gt;
+
+    aside.notes
+      p Pois é, não é tão ninja assim.
+      p.
+        É bom usar com cuidado. Se sempre for utilizar o combinador #[code /deep/] melhor nem começar com
+        isso tudo, né?
+
+  section
+    h1 #[code &lt;content&gt;]
+
+    div.fragment
+      pre: code.
+        &lt;p id="loser"&gt;Vitor Belfort&lt;/p&gt;
+
+        &lt;template id="template"&gt;
+          &lt;strong&gt;E o perdedor é:&lt;/strong&gt;
+          &lt;p&gt;
+            &lt;content&gt;&lt;/content&gt;
+          &lt;/p&gt;
+        &lt;/template&gt;
+
+      pre: code.
+        var loser = document.querySelector("#loser");
+        var templateContent = document.querySelector("#template").content;
+        var shadow = loser.createShadowRoot();
+        shadow.appendChild(document.importNode(templateContent, true));
+
+      pre.fragment: code.
+        &lt;p id="loser"&gt;
+          &lt;strong&gt;E o perdedor é:&lt;/strong&gt;
+          &lt;p&gt;
+            Vitor Belfort
+          &lt;/p&gt;
+        &lt;/p&gt;
+
+    aside.notes
+      p A tag #[code &lt;content&gt;] é utilizada como placeholder em templates, e é utilizada em conjunto com Shadow DOM.
+
+  section
+    pre: code.
+      &lt;article id="target"&gt;
+        &lt;h1&gt;Como Combater a Dengue&lt;/h1&gt;
+        &lt;section&gt;
+          &lt;p&gt;Beba bastante água&lt;/p&gt;
+        &lt;/section&gt;
+      &lt;/article&gt;
+
+      &lt;template id="template"&gt;
+        &lt;h1&gt;Como Combater a Gripe&lt;/h1&gt;
+        &lt;content select="section"&gt;&lt;/content&gt;
+      &lt;/template&gt;
+
+    pre: code.
+      var target = document.querySelector("#target");
+      var templateContent = document.querySelector("#template").content;
+      var shadow = target.createShadowRoot();
+      shadow.appendChild(document.importNode(templateContent, true));
+
+    pre.fragment: code.
+      &lt;article id="target"&gt;
+        &lt;h1&gt;Como Combater a Gripe&lt;/h1&gt;
+        &lt;section&gt;
+          &lt;p&gt;Beba bastante água&lt;/p&gt;
+        &lt;/section&gt;
+      &lt;/article&gt;
+
+    aside.notes
+      p.
+        O atributo #[code select] seleciona o que deve entrar, com um seletor CSS.
+        #[strong Somente elementos na raiz do alvo podem ser selecionados].
+
+  section
+    div.fragment
+      pre: code &lt;video src=".../BigBuckBunny.mp4" controls&gt;&lt;/video&gt;
+      video(src="http://www.webestools.com/page/media/videoTag/BigBuckBunny.mp4" controls)
+    figure.fragment
+      div: img(src="img/video-shadow-dom.png", alt="Shadow DOM do elemento video")
+      figcaption Shadow DOM do elemento #[code &lt;video&gt;] no Chrome
+
+    aside.notes
+      p.
+        Os browsers hoje já se utilizam de Shadow DOM. Vejamos o elemento &lt;video&gt;. #[strong fragment]
+        Para utilizá-lo, precisamos apenas colocar a tag &lt;video&gt; e alguns atributos para
+        configurá-la, como #[code src] e #[code autoplay], e ele já vai renderizar
+        tudo que precisa. Como? Shadow DOM! Você não vê, mas ele está lá! #[strong fragment]
+      p.
+        Quando colocamos o atributo #[code controls], o brower cria o mesmo HTML que nós, meros mortais,
+        criamos. Mas como esse bando de &lt;div&gt; não é afetada pelo nosso CSS? De novo: #[strong encapsular].
