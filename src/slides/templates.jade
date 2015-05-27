@@ -79,3 +79,67 @@ section#templates
       p.
         Primeiro pegamos ele, depois sua propriedade #[code content] e então duplicamos esse
         conteúdo para onde quisermos.
+
+  section
+    h1 #[code &lt;content&gt;]
+
+    div.fragment
+      pre: code.
+        &lt;p id="loser"&gt;Vitor Belfort&lt;/p&gt;
+
+        &lt;template id="template"&gt;
+          &lt;strong&gt;E o perdedor é:&lt;/strong&gt;
+          &lt;p&gt;
+            &lt;content&gt;&lt;/content&gt;
+          &lt;/p&gt;
+        &lt;/template&gt;
+
+      pre: code.
+        var loser = document.querySelector("#loser");
+        var templateContent = document.querySelector("#template").content;
+        var shadow = loser.createShadowRoot();
+        shadow.appendChild(document.importNode(templateContent, true));
+
+      pre.fragment: code.
+        &lt;p id="loser"&gt;
+          &lt;strong&gt;E o perdedor é:&lt;/strong&gt;
+          &lt;p&gt;
+            Vitor Belfort
+          &lt;/p&gt;
+        &lt;/p&gt;
+
+    aside.notes
+      p A tag #[code &lt;content&gt;] é utilizada como placeholder em templates, e é utilizada em conjunto com Shadow DOM.
+
+  section
+    pre: code.
+      &lt;article id="target"&gt;
+        &lt;h1&gt;Como Combater a Dengue&lt;/h1&gt;
+        &lt;section&gt;
+          &lt;p&gt;Beba bastante água&lt;/p&gt;
+        &lt;/section&gt;
+      &lt;/article&gt;
+
+      &lt;template id="template"&gt;
+        &lt;h1&gt;Como Combater a Gripe&lt;/h1&gt;
+        &lt;content select="section"&gt;&lt;/content&gt;
+      &lt;/template&gt;
+
+    pre: code.
+      var target = document.querySelector("#target");
+      var templateContent = document.querySelector("#template").content;
+      var shadow = target.createShadowRoot();
+      shadow.appendChild(document.importNode(templateContent, true));
+
+    pre.fragment: code.
+      &lt;article id="target"&gt;
+        &lt;h1&gt;Como Combater a Gripe&lt;/h1&gt;
+        &lt;section&gt;
+          &lt;p&gt;Beba bastante água&lt;/p&gt;
+        &lt;/section&gt;
+      &lt;/article&gt;
+
+    aside.notes
+      p.
+        O atributo #[code select] seleciona o que deve entrar, com um seletor CSS.
+        #[strong Somente elementos na raiz do alvo podem ser selecionados].
