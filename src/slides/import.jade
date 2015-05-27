@@ -1,3 +1,34 @@
-section
+section#import
   section
-    h1 HTML Import
+    h1 HTML Imports
+
+    aside.notes
+      p A cereja do bolo. Era o que faltava para os nossos componentes serem modulares de verdade (serem "componentes", talvez?).
+      p.
+        Os HTML Imports permitem que nossos componentes sejam salvos em arquivos específicos, separados, contendo apenas seu
+        estilo, marcação e comportamento, e que sejam importados somente quando necessários.
+
+  section
+    h1 Como?
+
+    ol
+      li Importamos o documento
+        pre: code: &lt;link rel="import" href="meu-elemento.html" /&gt;
+      li Então usamos nosso elemento normalmente
+        pre: code: &lt;meu-elemento&gt;&lt;/meu-elemento&gt;
+
+  section
+    h1 Detalhes
+
+    ul
+      li No arquivo importado, o objeto #[code document] se refere ao documento que o está requisitando.
+        ul: li.
+          Para ser capaz de selecionar elementos em seu DOM, deve-se acessar o documento importado pela
+          propriedade #[code document.currentScript.ownerDocument].
+
+    aside.notes
+      p No arquivo importado, o objeto #[code document] se refere ao documento principal.
+      p.
+        Para ser capaz de selecionar elementos em seu DOM, deve-se acessar o documento importado pela
+        propriedade #[code document.currentScript.ownerDocument] (#[code document._currentScript.ownerDocument]
+        no polyfill)
