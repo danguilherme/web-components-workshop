@@ -10,6 +10,15 @@
 .firefox .firefox-only
   display inherit
 
+// aside.notes
+//   display block !important
+//   background-color rgba(0,0,0,0.2)
+//   border 3px solid rgba(0,0,0,0.5)
+//   border-radius 10px
+//   font-size .5em
+//   text-align left
+//   padding 1em
+
 #background-legend
   position absolute
   bottom 0
@@ -97,6 +106,20 @@ code
   background-color #F5F5F5
   border-radius 5px
 
+.slide-image
+  width 500px
+
+#titulo .slide-image
+  display inline-block
+  width 250px
+  margin 0 25px
+  &:not(:first-child):not(:last-child)
+    margin 0
+  &.web-components-logo
+    position relative
+    top -70px
+    width 350px
+    
 #em-desenvolvimento
   ul
     margin 0
@@ -114,8 +137,28 @@ code
   ol
     margin-left 1.5em
 
+#criando-shadow-root
+  figure img
+    margin 0
+  pre
+    margin-top 5px
+    margin-bottom 5px
+
 #import
   ol
     width 100%
     li > pre
       margin-left 0
+
+#quero-usar-hoje
+  img
+    border none
+    box-shadow none
+  object
+    width 99px
+
+#manter-atualizado #tweet
+  h1
+    color white
+  a
+    text-shadow 1px 1px 2px white

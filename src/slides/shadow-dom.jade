@@ -1,5 +1,6 @@
 section#shadow-dom
   section
+    object(type="image/svg+xml" data="img/webcomponents-icons/shadow-dom/shadow-dom.svg")#shadow-dom-image.slide-image
     h1 Shadow DOM
 
     aside.notes
@@ -42,8 +43,8 @@ section#shadow-dom
         adicionado a algum elemento, #[strong todo o seu conteúdo some], ficando visível
         apenas o que está dentro dele.
 
-  section
-    h1 Criando um #[em shadow root]
+  section#criando-shadow-root
+    h1 Criando uma #[em Shadow Root]
 
     pre: code.
       &lt;div id="target"&gt;&lt;/div&gt;
@@ -86,7 +87,7 @@ section#shadow-dom
     h2.fragment E o Tal do "Encapsulamento?"
     p.fragment.
       O objetivo do Shadow DOM é evitar mudanças #[strong acidentais]
-      nos componentes, não remover o controle da mão dos desenvolvedores.
+      nos componentes, não tirar o controle da mão dos desenvolvedores.
 
     aside.notes
       p Utilizamos o pseudo-elemento #[code ::shadow] para selecionar as #[em shadow roots] de um elemento em específico.
@@ -94,7 +95,7 @@ section#shadow-dom
       p #[strong fragment]
       p.
         Esses seletores existem porque a ideia do Shadow DOM é evitar mudanças
-        #[strong acidentais]/não desejadas nos componentes, não remover o controle da mão dos desenvolvedores.
+        #[strong acidentais]/não desejadas nos componentes, não tirar o controle da mão dos desenvolvedores.
 
   section
     h1 Voltando...
@@ -177,6 +178,8 @@ section#shadow-dom
         #[strong Somente elementos na raiz do alvo podem ser selecionados].
 
   section
+    h1 "Em Produção"
+    
     div.fragment
       pre: code &lt;video src=".../BigBuckBunny.mp4" controls&gt;&lt;/video&gt;
       video(src="http://www.webestools.com/page/media/videoTag/BigBuckBunny.mp4" controls)
